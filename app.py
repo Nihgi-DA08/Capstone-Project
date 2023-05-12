@@ -333,6 +333,8 @@ from dash import Dash, html, dcc, callback, Output, Input
 # Initialize the app
 app = Dash(__name__)
 
+server = app.server
+
 # App layout
 app.layout = html.Div([
     html.Div(children='EDA Analysis'),
