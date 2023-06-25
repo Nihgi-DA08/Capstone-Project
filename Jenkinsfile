@@ -10,8 +10,13 @@ pipeline {
 
         stage('Cleaning') {
             steps {
-                sh 'docker stop portugal-hotel-booking-dash'
-                sh 'docker rm portugal-hotel-booking-dash'
+                script {
+                    def containerName = sh(returnStdout: true, script: 'docker ps -aqf "name=portugal-hotel-booking-dash"').trim()
+                    if (containerName) {
+                        sh "docker stop $containerName"
+                        sh "docker rm $containerName"
+                    }
+                }
             }
         }
 
