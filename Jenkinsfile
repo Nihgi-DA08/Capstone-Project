@@ -22,7 +22,7 @@ pipeline {
 
         stage('Run') {
             steps {
-                sh 'docker run --name portugal-hotel-booking-dash --network yan -d portugal-hotel-booking-dash:latest'
+                sh 'docker run --name portugal-hotel-booking-dash --network yan --restart=unless-stopped -p 8050:8050 -d portugal-hotel-booking-dash:latest'
             }
         }
     }
