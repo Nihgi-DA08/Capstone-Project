@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t portugal-hotel-booking-dash:latest .'
+                sh 'docker build -t portugal-hotel-booking:latest .'
             }
         }
 
         stage('Cleaning') {
             steps {
                 script {
-                    def containerName = sh(returnStdout: true, script: 'docker ps -aqf "name=portugal-hotel-booking-dash"').trim()
+                    def containerName = sh(returnStdout: true, script: 'docker ps -aqf "name=portugal-hotel-booking"').trim()
                     if (containerName) {
                         sh "docker stop $containerName"
                         sh "docker rm $containerName"
@@ -22,7 +22,7 @@ pipeline {
 
         stage('Run') {
             steps {
-                sh 'docker run --name portugal-hotel-booking-dash --network yan --restart=unless-stopped -p 8050:8050 -d portugal-hotel-booking-dash:latest'
+                sh 'docker run --name portugal-hotel-booking --network yan --restart=unless-stopped -p 8050:8050 -d portugal-hotel-booking:latest'
             }
         }
     }
