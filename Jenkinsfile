@@ -8,6 +8,14 @@ pipeline {
             }
         }
 
+        stage('Push') {
+            steps {
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
+                    sh 'docker push yamiannephilim/portugal-hotel-booking'
+                }
+            }
+        }
+
         stage('Clean') {
             steps {
                 script {
