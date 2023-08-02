@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t yamiannephilim/portugal-hotel-booking:latest .'
+                sh 'docker build -t yamiannephilim/dash:latest .'
             }
         }
 
         stage('Push') {
             steps {
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://index.docker.io/v1/') {
-                    sh 'docker push yamiannephilim/portugal-hotel-booking'
+                    sh 'docker push yamiannephilim/dash'
                 }
             }
         }
@@ -33,7 +33,7 @@ pipeline {
                 sh 'docker container stop portugal-hotel-booking || echo "this container does not exist"'
                 sh 'docker network create yan || echo "this network exist"'
                 sh 'echo y | docker container prune'
-                sh 'docker run --name portugal-hotel-booking --network yan --restart=unless-stopped -p 8050:8050 -d yamiannephilim/portugal-hotel-booking:latest'
+                sh 'docker run --name portugal-hotel-booking --network yan --restart=unless-stopped -p 8050:8050 -d yamiannephilim/dash:latest'
             }
         }
     }
