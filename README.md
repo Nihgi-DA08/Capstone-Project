@@ -1,5 +1,5 @@
 # CAPSTONE PROJECT
-Phân tích về lượng booking khách sạn của Bồ Đào Nha.
+Phân tích về lượng booking khách sạn của Bồ Đào Nha. Demo
 
 ## HÌNH ẢNH DEMO
 <p align="center">
